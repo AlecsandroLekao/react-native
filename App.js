@@ -1,20 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import Home from './src/screens/home/home.jsx';
+import CadDespesa from './src/screens/CadDespesa/cadDespesa.jsx';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
+const Stack = createNativeStackNavigator()
+const optionheader = {
+  headerShown:false
+}
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='home'>
+        <Stack.Screen name='home' component={Home} options={optionheader}/>
+        <Stack.Screen name='despesas' component={CadDespesa} options={{title:'Despesa',headerTitleAlign:'center',headerShadowVisible:false}} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
